@@ -48,22 +48,16 @@ function SmartSvg(svg) {
     }
 
     function duringSvgDrag(evt) {
-        
-
         // Calculate how far from the origin
-        //var pt = self.svg.createSVGPoint();
-        //debugger;
         var clientDx = evt.clientX - this.dragOrigin.x;
         var clientDy = evt.clientY - this.dragOrigin.y;
 
         // Figure out how far it moved in local coordinates
         var mtx = this.dragMatrix;
-        //debugger;
         var dx = (clientDx * mtx.a) + (clientDy * mtx.b) + this.dragCurrentLocation.x;
         var dy = (clientDx * mtx.c) + (clientDy * mtx.d) + this.dragCurrentLocation.y;
 
         // Move the element by replacing the last transform with a new one
-        //console.log(this.draggingElem.transfer);
         var transformList = this.draggingElem.transform.baseVal;
         var newTransform = self.svg.createSVGTransform();
         newTransform.setTranslate(dx, dy);
